@@ -33,7 +33,7 @@ a:hover {
 	position: sticky;
 	top: 0;
 	background: inherit;
-	background: rgba(134, 134, 134, 0.1);
+	background: rgba(134, 134, 134, 0.3);
 	backdrop-filter: blur(23px);
 	-webkit-backdrop-filter: blur(23px);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -46,7 +46,7 @@ a:hover {
 .main-menu a {
 	padding-left: 16px;
 	padding-right: 16px;
-	color: #262626;
+	color: #fff;
 }
 
 .main-menu ul {

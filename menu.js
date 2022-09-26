@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		activeSubmenu.classList.add('active');
 		console.log('active', activeSubmenu);
 
-		tl.to('.submenu a', {opacity: 0, duration: 0})
+		tl.set('.submenu a', {opacity: 0})
 		tl.fromTo(`.submenu[data-submenu="${target}"] a`, {y: -80}, {y: 0, duration: .3, ease: 'power1.in', stagger: .05}, '<');
 		tl.fromTo(`.submenu[data-submenu="${target}"] a`, {opacity: 0}, {opacity: 1, duration: .3, ease: 'power1.in', stagger: .05}, '<.2');
 	}

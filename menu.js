@@ -39,8 +39,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	function closeMenu(link) {
 		document.querySelector('body').classList.remove('menu-open');
 
-		tl.to('.menu-overlay', {x: '-100%', duration: .6, ease: 'power2.in'});
-		tl.to('.menu-overlay-backdrop', {opacity: 0, duration: .6, ease: 'power2.out'});
+		tl.to('.menu-overlay', {x: '-100%', duration: .3, ease: 'power2.in'});
+		tl.to('.menu-overlay-backdrop', {opacity: 0, duration: .3, ease: 'power2.out'});
 	}
 
 	function openMenu(link) {
@@ -56,8 +56,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.querySelector('body').classList.add('menu-open');
 
 		tl.to('.submenu a', {opacity: 0});
-		tl.fromTo('.menu-overlay-backdrop', {opacity: 0}, {opacity: 1, duration: .6, ease: 'power2.out'});
-		tl.to('.menu-overlay', {x: 0, duration: .6, ease: 'power2.out'}, '<');
+		tl.fromTo('.menu-overlay-backdrop', {opacity: 0}, {opacity: 3, duration: .35, ease: 'power2.out'});
+		tl.to('.menu-overlay', {x: 0, duration: .35, ease: 'power2.out'}, '<');
 		tl.fromTo('.main-overlay-link', {opacity: .2}, {opacity: 1, duration: .4, ease: 'power4.in'}, '<');
 		tl.fromTo(`.submenu[data-submenu="${target}"] a`, {y: -80}, {y: 0, duration: .3, ease: 'power1.in', stagger: .05}, '<');
 		tl.fromTo(`.submenu[data-submenu="${target}"] a`, {opacity: 0}, {opacity: 1, duration: .3, ease: 'power1.in', stagger: .05}, '<.2');

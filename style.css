@@ -200,6 +200,8 @@ a:hover {
 
 .toggle-menu {
 	display: flex;
+	height: 80px;
+	width: 80px;
 }
 
 @media screen and (min-width: 950px) {

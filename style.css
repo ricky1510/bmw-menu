@@ -114,7 +114,6 @@ a:hover {
 	font-size: 24px;
 	display: block;
 	text-decoration: none;
-	border-bottom: 1px solid #F4F4F4;
 	padding-bottom: 32px;
 	padding: 12px 20px;
 	transition: color .6s;
@@ -123,6 +122,14 @@ a:hover {
 .main-overlay-link span {
 	pointer-events: none;
 	display: block;
+}
+
+.main-overlay-li {
+	border-bottom: 1px solid #F4F4F4;
+}
+
+.main-overlay-li:last-child {
+	border-bottom-color: transparent!important;
 }
 
 .menu-overlay > ul {
@@ -136,9 +143,7 @@ a:hover {
 	padding-bottom: 50px;
 }
 
-li:last-child .main-overlay-link {
-	border-bottom-color: transparent!important;
-}
+
 
 .submenu {
 	pointer-events: none;

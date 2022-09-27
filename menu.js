@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		mainTimeline.fromTo('.menu-overlay-backdrop', {opacity: 0}, {opacity: 3, duration: .6, ease: 'power2.out'});
 		mainTimeline.to('.menu-overlay', {x: 0, duration: .35, ease: 'power1.out'}, '<');
 		mainTimeline.fromTo('.main-overlay-link span', {opacity: 0, y: 50}, {opacity: 1, y: 0, duration: 1.4, ease: 'power4.out', stagger: .2});
-		mainTimeline.fromTo('.main-overlay-link', {borderBottom: '1px solid rgba(244, 244, 244, 0)'}, {borderBottom: '1px solid rgba(244, 244, 244, 1)', duration: 1.4, ease: 'power4.out', stagger: .2}, '<');
+		mainTimeline.fromTo('.main-overlay-li', {borderBottom: '1px solid rgba(244, 244, 244, 0)'}, {borderBottom: '1px solid rgba(244, 244, 244, 1)', duration: 1.4, ease: 'power4.out', stagger: .2}, '<');
 		if (link) {
 			mainTimeline.fromTo(`.submenu[data-submenu="${target}"]`, {y: 60, opacity: 0}, {y: 0, opacity: 1, duration: .5, ease: 'power1.out'}, '<+1');
 		}

@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 	const mainTimeline = gsap.timeline();
-	const altTimeline = gsap.timeline();
 	const mainMenu = document.querySelector('.main-menu');
 	const mainMenuLinks = document.querySelectorAll('.main-menu a');
 	const mainOverlayLinks = document.querySelectorAll('.main-overlay-link');
@@ -8,24 +7,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	const backDrop = document.querySelector('.menu-overlay-backdrop');
 	const toggleMenu = document.querySelector('.toggle-menu');
 
+	mainTimeline.set('.submenu', {opacity: 0});
+
 	function activateSubmenu(link) {
 		const target = link.dataset.target;
+		const scrollHeight = document.querySelector(`.submenu[data-submenu="${target}"]`).scrollHeight;
 
-		const oldActiveSubmenu = document.querySelector('.submenu.active');
-		if (oldActiveSubmenu) {
-			oldActiveSubmenu.classList.remove('active');
-			altTimeline.to(oldActiveSubmenu, {height: 0, duration: .2, ease: 'power1.in'});
+		const menuToggleVisible = getComputedStyle(toggleMenu).getPropertyValue('display') !== 'none'
+		if (menuToggleVisible) {
+			mainTimeline.to('.submenu', {height: 0, y: 0, opacity: .3});
+			mainTimeline.fromTo(`.submenu[data-submenu="${target}"]`, {height: 0, y: 40, opacity: 0}, {height: scrollHeight, y: 0, opacity: 1, duration: .5, ease: 'power1.out'}, '<');
+		} else {
+			mainTimeline.set('.submenu', {y: 40, opacity: 0});
+			mainTimeline.fromTo(`.submenu[data-submenu="${target}"]`, {y: 40, opacity: 0}, {y: 0, opacity: 1, duration: .5, ease: 'power1.out'}, '<');
 		}
 
-		const activeSubmenu = document.querySelector(`.submenu[data-submenu="${target}"]`)
-		activeSubmenu.classList.add('active');
-
-		const scrollHeight = document.querySelector(`.submenu[data-submenu="${target}"]`).scrollHeight;
-		mainTimeline.set('.submenu a', {opacity: 0});
-		console.log('activate submenu');
-		mainTimeline.fromTo(`.submenu[data-submenu="${target}"]`, {height: 0}, {height: scrollHeight, duration: .2, ease: 'power1.in'});
-		mainTimeline.fromTo(`.submenu[data-submenu="${target}"] a`, {y: -80}, {y: 0, duration: .3, ease: 'power1.in', stagger: .05});
-		mainTimeline.fromTo(`.submenu[data-submenu="${target}"] a`, {opacity: 0}, {opacity: 1, duration: .3, ease: 'power1.in', stagger: .05}, '<.2');
 	}
 
 	function deactivateOverlayLink() {
@@ -49,12 +45,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		mainTimeline.to('.menu-overlay-backdrop', {opacity: 0, duration: .3, ease: 'power2.out'});
 	}
 
-	function openMenu() {
+	function openMenu(link) {
 		document.querySelector('body').classList.add('menu-open');
+		let target;
+		let scrollHeight;
+		if (link) {
+			target = link.dataset.target;
+			scrollHeight = document.querySelector(`.submenu[data-submenu="${target}"]`).scrollHeight;
+		}
 
+		mainTimeline.set('.submenu', {y: 20, opacity: 0});
 		mainTimeline.fromTo('.menu-overlay-backdrop', {opacity: 0}, {opacity: 3, duration: .6, ease: 'power2.out'});
-		mainTimeline.to('.menu-overlay', {x: 0, duration: .35, ease: 'power2.out'}, '<');
-		mainTimeline.fromTo('.main-overlay-link', {opacity: .2}, {opacity: 1, duration: .4, ease: 'power4.in'}, '<');
+		mainTimeline.to('.menu-overlay', {x: 0, duration: .35, ease: 'power1.out'}, '<');
+		mainTimeline.fromTo('.main-overlay-link span', {opacity: 0, y: 50}, {opacity: 1, y: 0, duration: 1.4, ease: 'power4.out', stagger: .2});
+		mainTimeline.fromTo('.main-overlay-link', {borderBottom: '1px solid rgba(244, 244, 244, 0)'}, {borderBottom: '1px solid rgba(244, 244, 244, 1)', duration: 1.4, ease: 'power4.out', stagger: .2}, '<');
+		if (link) {
+			mainTimeline.fromTo(`.submenu[data-submenu="${target}"]`, {y: 60, opacity: 0}, {y: 0, opacity: 1, duration: .5, ease: 'power1.out'}, '<+1');
+		}
+		mainTimeline.fromTo('.menu-title, .close-btn', {opacity: 0}, {opacity: 1, duration: .3, ease: 'power2.out'}, '<+=.3')
 	}
 
 	mainMenuLinks.forEach((link) => {
@@ -64,8 +72,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			const link = event.target;
 
 			activateOverlayLink(link);
-			openMenu();
-			activateSubmenu(link);
+			openMenu(link);
 		});
 	});
 

@@ -67,11 +67,10 @@ a:hover {
 
 .menu-overlay-wrapper {
 	position: fixed;
-	left: 12px;
-	top: 12px;
-	bottom: 12px;
-	width: calc(100% - 24px);
-	max-width: 880px;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
 	overflow: hidden;
 	display: flex;
 	pointer-events: none;
@@ -142,8 +141,6 @@ a:hover {
 	padding-top: 100px;
 	padding-bottom: 50px;
 }
-
-
 
 .submenu {
 	pointer-events: none;
@@ -242,5 +239,13 @@ a:hover {
 		justify-content: center;
 		position: relative;
 		width: calc(100% - 280px);
+	}
+
+	.menu-overlay-wrapper {
+		left: 12px;
+		top: 12px;
+		bottom: 12px;
+		width: calc(100% - 24px);
+		max-width: 880px;
 	}
 }

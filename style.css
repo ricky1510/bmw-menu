@@ -107,10 +107,7 @@ a:hover {
 	height: 100%;
 	background-color: #fff;
 	display: flex;
-	/*padding-top: 100px;*/
 	transform: translateX(-100%);
-	padding-top: 100px;
-	padding-bottom: 50px;
 }
 
 .main-overlay-link {
@@ -123,7 +120,6 @@ a:hover {
 	transition: color .6s;
 }
 
-
 .menu-overlay > ul {
 	display: flex;
 	flex-direction: column;
@@ -131,6 +127,8 @@ a:hover {
 	width: 100%;
 	overflow: auto;
 	overscroll-behavior: contain;
+	padding-top: 100px;
+	padding-bottom: 50px;
 }
 
 li:last-child .main-overlay-link {
@@ -199,14 +197,14 @@ li:last-child .main-overlay-link {
 	}
 
 	.menu-overlay {
-		padding-top: 0;
-		padding-bottom: 0;
 		align-items: center;
 	}
 
 	.menu-overlay > ul {
 		justify-content: center;
 		overflow: visible;
+		padding-top: 0;
+		padding-bottom: 0;
 	}
 
 	.submenu {
